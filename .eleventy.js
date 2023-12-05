@@ -6,6 +6,12 @@ const { stripHtml } = require('string-strip-html');
 
 module.exports = function(eleventyConfig) {
 
+    // Add sitemap generation
+    eleventyConfig.on('afterBuild', () => {
+      const { execSync } = require('child_process');
+      execSync('npm run generate-sitemap');
+    });
+
   let markdownItOptions = {
     html: true, // you can include HTML tags
   };
